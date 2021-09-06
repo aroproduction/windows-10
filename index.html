@@ -14,6 +14,18 @@
     <start class="win_start_hid">
         <h1>Coming Soon...</h1>
     </start>
+    <div id="contextMenu" class="context-menu" style="display: none">
+        <ul>
+            <li>View</li>
+            <li>Sort by</li>
+            <li>Refresh</li>
+            <li>Paste</li>
+            <li>Paste Shortcut</li>
+            <li>New</li>
+            <li>Personalize</li>
+        </ul>
+    </div>
+
     <footer>
         <div class="left_footer">
             <div class="win_logo_container" onclick="open_start()">
@@ -57,10 +69,10 @@
                 <img src="./resources/images/wifi.png" id="sp" alt="">
             </section>
             <section class="app_logo_container" id="sc_icons">
-                <div id="la"><h6>ENG</h6><h6>US</h6></div>
+                <div id="la"><p>ENG</p><p>US</p></div>
             </section>
             <section class="app_logo_container" id="sc_icons">
-                <div id="la"><h6 id="sys_time"></h6><h6 id="sys_date"></h6></div>
+                <div id="la"><p id="sys_time"></p><p id="sys_date"></p></div>
             </section>
             <section class="app_logo_container" id="sc_icons">
                 <i class="far fa-comment-alt"></i>
@@ -76,5 +88,30 @@
     <script src="https://kit.fontawesome.com/eefc8c4c0f.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="./resources/js/no_source.js"></script>
+    <script>
+        document.onclick = hideMenu;
+        document.oncontextmenu = rightClick;
+        
+        function hideMenu() {
+            document.getElementById("contextMenu")
+                    .style.display = "none"
+        }
+    
+        function rightClick(e) {
+            e.preventDefault();
+    
+            if (document.getElementById("contextMenu")
+                    .style.display == "block")
+                hideMenu();
+            else{
+                var menu = document.getElementById("contextMenu")
+    
+                menu.style.display = 'block';
+                menu.style.left = e.pageX + "px";
+                menu.style.top = e.pageY + "px";
+            }
+        }
+    </script>
+    
 </body>
 </html>
